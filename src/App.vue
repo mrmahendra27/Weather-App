@@ -1,5 +1,5 @@
 <template>
-  <div :class="typeof weather.cod == 200 && weather.main != undefined && weather.main.temp > 16 ? 'app sunny' : 'app' ">
+  <div :class="weather.cod == 200 && weather.main != undefined && weather.main.temp > 16 ? 'app sunny' : 'app' ">
     <main>
       <div class="search-box">
         <input
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     getWeather() {
-      fetch(`${this.api_url}weather?q=${this.search}&appid=${this.api_key}`)
+      fetch(`${this.api_url}weather?q=${this.search}&units=metric&appid=${this.api_key}`)
         .then((res) => {
           return res.json();
         })
@@ -57,7 +57,6 @@ export default {
 
     setResults(results) {
       this.weather = results;
-      console.log(this.weather)
     },
 
     dateBuilder() {
@@ -172,6 +171,7 @@ main {
   font-size: 20px;
   font-weight: 300;
   text-align: center;
+  font-style: italic;
   margin-bottom: 5px;
 }
 
